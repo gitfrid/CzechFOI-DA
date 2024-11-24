@@ -5,7 +5,7 @@
 The [Python Scripts](https://github.com/gitfrid/CzechFOI-DA/tree/main/Py%20Scripts) process and visualize CSV data from the [TERRA folder](https://github.com/gitfrid/CzechFOI-DA/tree/main/TERRA), generating interactive HTML plots. <br>Each plot compares two age groups. To interact with the plots, click on a legend entry to show/hide curves.
 
 Download the processed plots for analysis from the [Plot Results Folder](https://github.com/gitfrid/CzechFOI-DA/tree/main/Plot%20Results).
-<br>Or simply adapt and run the Python scripts to meet your own analysis requirements!
+<br>Or simply adapt and run the [Python scripts](https://github.com/gitfrid/CzechFOI-DA/blob/main/Py%20Scripts/AH%28%202D%206-Axis%20age-compare%20rolling-mean%20significance-1D-2D%20different-scale.py) to meet your own analysis requirements!
 
 Dates are counted as the number of days since [January 1, 2020](https://github.com/gitfrid/CzechFOI-DA/blob/main/Plot%20Results/Days%20to%20Date%20Translation%20Day%20Date%20Translation/Days%20to%20Date%20Translation%20Day%20Date%20Translation.png), for easier processing. "AGE_2023" represents age on January 1, 2023. <br>The data can optionally be normalized per 100,000 for comparison.
 

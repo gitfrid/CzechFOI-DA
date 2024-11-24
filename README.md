@@ -12,15 +12,18 @@ Dates are counted as the number of days since [January 1, 2020](https://github.c
 Access the original Czech FOI data from a [Freedom of Information request](https://github.com/PalackyUniversity/uzis-data-analysis/blob/main/data/Vesely_106_202403141131.tar.xz).
 <br>To learn how the Pivot CSV files in the TERRA folder were created, see the [wiki](https://github.com/gitfrid/CzechFOI-DA/wiki)
 
-<br>**Interactive html plot of the Czech FOI data. Age group comparison correlation 1st Derivate significance xarray: AG_70-74 vs 75-79**
+
+_________________________________________
+**Interactive html plot of the Czech FOI data. <br>Age group comparison correlation 1st Derivate significance xarray: AG_70-74 vs 75-79**
+<br>
+
+<img src=https://github.com/gitfrid/CzechFOI-DA/blob/main/Plot%20Results/AH)%202D%206-Axis%20age-compare%20rolling-mean%20significance-1D-2D%20same-scale%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300/AH)%202D%206-Axis%20age-compare%20rolling-mean%20significance-1D-2D%20same-scale%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300%20AG_70-74%20vs%2075-79.png width="1200" height="auto">
 <br>
 
 **The first derivative represents speed** because it measures how fast something changes over time.
 **The second derivative represents acceleration** as it measures how fast the speed (or first derivative) changes over time, showing how quickly the speed is increasing or decreasing.
+
 _________________________________________
-<br>
-<img src=https://github.com/gitfrid/CzechFOI-DA/blob/main/Plot%20Results/AH)%202D%206-Axis%20age-compare%20rolling-mean%20significance-1D-2D%20same-scale%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300/AH)%202D%206-Axis%20age-compare%20rolling-mean%20significance-1D-2D%20same-scale%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300%20AG_70-74%20vs%2075-79.png width="600" height="auto">
-<br>
 
 ### Software Requirements:
 - [Python 3.12.5](https://www.python.org/downloads/) to run the scripts.

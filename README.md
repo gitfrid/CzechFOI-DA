@@ -5,6 +5,7 @@
 The [Python Scripts](https://github.com/gitfrid/CzechFOI-DA/tree/main/Py%20Scripts) process and visualize CSV data from the [TERRA folder](https://github.com/gitfrid/CzechFOI-DA/tree/main/TERRA), generating interactive HTML plots. Each plot compares two age groups. To interact with the plots, click on a legend entry to show/hide curves.
 
 Download the processed plots for analysis from the [Plot Results Folder](https://github.com/gitfrid/CzechFOI-DA/tree/main/Plot%20Results).
+Or simply adapt the Python scripts to meet your own analysis requirements!
 
 Dates are counted as the number of days since January 1, 2020, for easier processing. "AGE_2023" represents age on January 1, 2023. The data can optionally be normalized per 100,000 for comparison.
 

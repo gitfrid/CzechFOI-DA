@@ -9,6 +9,7 @@ Download the processed plots for analysis from the [Plot Results Folder](https:/
 Dates are counted as the number of days since January 1, 2020, for easier processing. "AGE_2023" represents age on January 1, 2023. The data can optionally be normalized per 100,000 for comparison.
 
 Access the original Czech FOI data from a [Freedom of Information request](https://github.com/PalackyUniversity/uzis-data-analysis/blob/main/data/Vesely_106_202403141131.tar.xz).
+To learn how the Pivot CSV files in the TERRA folder were created, see the [wiki](https://github.com/gitfrid/CzechFOI-DA/wiki)
 
 ### Software Requirements:
 - [Python 3.12.5](https://www.python.org/downloads/) to run the scripts.

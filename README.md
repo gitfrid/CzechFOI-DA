@@ -24,6 +24,14 @@ _________________________________________
 **The second derivative represents acceleration** as it measures how fast the speed (or first derivative) changes over time, showing how quickly the speed is increasing or decreasing.
 
 _________________________________________
+**Age group comparison Pearson correlation 2nd Derivate significance: AG_70-74 vs 75-79**
+<br>
+
+<img src=https://github.com/gitfrid/CzechFOI-DA/blob/main/Plot%20Results/AH)%202D%206-Axis%20age-compare%20rolling-mean%20significance-1D-2D%20same-scale%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300/AH)%202D%206-Axis%20age-compare%20rolling-mean%20significance%202D%20same-scale%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300%20AG_70-74%20vs%2075-79.png width="1280" height="auto">
+<br>
+
+The second derivative represents acceleration
+_________________________________________
 
 ### Software Requirements:
 - [Python 3.12.5](https://www.python.org/downloads/) to run the scripts.

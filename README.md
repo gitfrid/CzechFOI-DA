@@ -28,7 +28,7 @@ _________________________________________
 <img src=https://github.com/gitfrid/CzechFOI-DA/blob/main/Plot%20Results/AH)%202D%206-Axis%20age-compare%20rolling-mean%20significance-1D-2D%20same-scale%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300/AH)%202D%206-Axis%20age-compare%20rolling-mean%20significance%202D%20same-scale%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300%20AG_70-74%20vs%2075-79.png width="1280" height="auto">
 <br>
 
-The second derivative represents acceleration. The py script ending with 'same-scale' uses the same y-axis scale for both age groups. Use this version to compare similar age groups. The file ending with 'different-scale' uses different y-axes with different scales for each age group.
+The py script ending with 'same-scale' uses the same y-axis scale for both age groups. Use this version to compare similar age groups. The file ending with 'different-scale' uses different y-axes with different scales for each age group.
 _________________________________________
 
 ### Software Requirements:

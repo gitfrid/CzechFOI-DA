@@ -9,13 +9,13 @@ def main():
     
     # List of CSV file paths
     csv_files_primary = [
-        r"C:\CzechFOI-BYAGE\TERRA\PVT_CUM_NUM_UVX_D_NORM.csv",
-        r"C:\CzechFOI-BYAGE\TERRA\PVT_CUM_NUM_VX_D_NORM.csv"
+        r"C:\CzechFOI-DA\TERRA\PVT_CUM_NUM_UVX_D_NORM.csv",
+        r"C:\CzechFOI-DA\TERRA\PVT_CUM_NUM_VX_D_NORM.csv"
     ]
 
     csv_files_secondary = [
-        r"C:\CzechFOI-BYAGE\TERRA\PVT_CUM_NUM_UVX.csv",
-        r"C:\CzechFOI-BYAGE\TERRA\PVT_CUM_NUM_VX.csv"
+        r"C:\CzechFOI-DA\TERRA\PVT_CUM_NUM_UVX.csv",
+        r"C:\CzechFOI-DA\TERRA\PVT_CUM_NUM_VX.csv"
     ]
     
     # Read all CSV files into lists of DataFrames

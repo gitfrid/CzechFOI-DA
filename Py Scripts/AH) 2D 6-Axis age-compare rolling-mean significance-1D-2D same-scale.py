@@ -23,16 +23,16 @@ def main():
     # Create an instance of PlotConfig
     plot_config = PlotConfig(
         title_text="Rolling correlation significance test age diff of AG 0 years", # Title of plot
-        plot_name_append_text="",       # apend text - to plotfile name and directory, to save in uniqe file location
-        window_size_correl=30,          # window size for rolling pearson correlation
+        plot_name_append_text="Avg - NUM_VD 1D 2D vs NUM_D 1D 2D",       # apend text - to plotfile name and directory, to save in uniqe file location
+        window_size_correl=300,         # window size for rolling pearson correlation
         window_size_mov_average=30,     # window size for moving means
-        normalize=True,                 # normalize dvd values
-        normalize_cumulate_deaths=True, # normalize cumulated deaths bevore cummulation
+        normalize=True,                # normalize dvd values
+        normalize_cumulate_deaths=True,# normalize cumulated deaths bevore cummulation
         population_minus_death=True,    # deducts the deceased from the total population
         custom_legend_column = 10,      # A change could require adjustments to the code. 
         axis_y1_logrithmic=True,        # show logarithmic y1 axis
         savetraces_to_csv=False,        # save calcualted results of all traces into a csv file
-        calc_derivate_mean = True      # smooth 1sd and 2nd derivate by moving mean before and after calc
+        calc_derivate_mean = True       # smooth 1sd and 2nd derivate by moving mean before and after calc
     )
 
     # If you're calculating pearson correlation significance on raw data without rolling mean, 
@@ -41,6 +41,10 @@ def main():
     # In most time-series analyses, smoothing is recommended to help reduce this
     
     pairs = [
+            ('Avg NUM_VDA','Avg NUM_DVDA',),
+            ('Avg NUM_VDA','Avg NUM_D'),
+            ('Avg NUM_VDA','Avg NUM_DVX'),
+            ('Avg NUM_VDA','Avg NUM_DUVX'),
             ('Avg 1D NUM_VDA','Avg 1D NUM_DVDA',),
             ('Avg 1D NUM_VDA','Avg 1D NUM_D'),
             ('Avg 1D NUM_VDA','Avg 1D NUM_DVX'),
@@ -50,6 +54,7 @@ def main():
             ('Avg 2D NUM_VDA','Avg 2D NUM_DVX'),
             ('Avg 2D NUM_VDA','Avg 2D NUM_DUVX')
     ]
+
 
     # Comment in - if you want to show pairs text in the plot annotation 
     # plot_config.update_pairs(pairs)
@@ -71,30 +76,30 @@ def main():
     ]
     
     csv_files_dvd = [
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_D.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_DUVX.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_DVX.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_DVD1.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_DVD2.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_DVD3.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_DVD4.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_DVD5.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_DVD6.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_DVD7.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_DVDA.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_D.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_DUVX.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_DVX.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_DVD1.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_DVD2.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_DVD3.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_DVD4.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_DVD5.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_DVD6.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_DVD7.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_DVDA.csv",
     ]
     csv_files_vd = [
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_POP.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_UVX.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_VX.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_VD1.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_VD2.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_VD3.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_VD4.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_VD5.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_VD6.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_VD7.csv",
-        r"C:\Github\CzechFOI-TIME\TERRA\PVT_NUM_VDA.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_POP.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_UVX.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_VX.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_VD1.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_VD2.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_VD3.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_VD4.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_VD5.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_VD6.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_VD7.csv",
+        r"C:\Github\CzechFOI-DA\TERRA\PVT_NUM_VDA.csv",
     ]
  
     try:
@@ -141,23 +146,26 @@ def main():
                 age_band_exension = age_band.split('-')[0]  
                                                   
                 # Calculate cumulative VD data trace
-                if i == 0:  # csv file[0]
+                if i == 0:  # csv file[0] POP
                     if plot_config.population_minus_death:
-                        # POP - D
-                        cum_dataframes_vd = dataframes_vd[0][age_band] - dataframes_dvd[0][age_band].cumsum()
+                        # POP - cum D
+                        cum_dataframes_vd = dataframes_vd[0][age_band] - dataframes_dvd[0][age_band].cumsum() 
                     else :
+                        # POP
                         cum_dataframes_vd = dataframes_vd[0][age_band]                
-                elif i == 1: # csv file [1]
+                elif i == 1: # csv file [1] UVX
                     if plot_config.population_minus_death:
-                        # POP - D - UVX
+                        # POP - cum D - cum VX
                         cum_dataframes_vd = dataframes_vd[0][age_band] - dataframes_dvd[1][age_band].cumsum() + dataframes_vd[1][age_band].cumsum() 
                     else :
+                        # POP - cum VX
                         cum_dataframes_vd =  dataframes_vd[0][age_band]  + dataframes_vd[1][age_band].cumsum() 
                 else:   # csv files [i]
                     if plot_config.population_minus_death:
-                        # VX..VDX - D 
+                        # VX..VDX - cum D 
                         cum_dataframes_vd = dataframes_vd[i][age_band].cumsum() - dataframes_dvd[i][age_band].cumsum()
                     else :
+                        # VX..VDX
                         cum_dataframes_vd = dataframes_vd[i][age_band].cumsum()   
                                              
                 # Normalize the data per 100,000 

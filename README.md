@@ -17,7 +17,7 @@ Access the original Czech FOI data from a [Freedom of Information request](https
 | NUM_DUVX          | Number unvaxed deaths                                                | NUM_UVX               | Number of unvaxed people                              |
 | NUM_DVX           | Number vaxed deaths                                                  | NUM_VX                | Number of vaxed people                                |
 | NUM_DVD1-DVD7     | Number deaths doses 1 - 7                                            | NUM_VD1-VD7           | Number of vax doses 1 - 7                             |
-| NUM_DVDA          | Number deaths from all doses                                         | NUM_VDA               | Total number of vax doses (sum of all doses)          |
+| NUM_DVDA          | Number deaths from all doses                                         | NUM_VDA               | Total number of all vax doses (sum)                   |
 <br>
 
 _________________________________________

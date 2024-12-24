@@ -58,7 +58,7 @@ _________________________________________
 
 If the baseline without the dAEFIs is known, the frequency of rare events (1 per 10,000) can be calculated. 
 <br>**However, I have struggled to find a reliable method to calculate the frequency of rare events, 
-<br>when only the curve including the dAEFIs is available (real-world data)!**
+<br>when only the curve including the dAEFIs is available (real-world data) !**
 _________________________________________
 
 ### Software Requirements:

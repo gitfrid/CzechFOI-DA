@@ -46,6 +46,7 @@ _________________________________________
 
 <img src=https://github.com/gitfrid/CzechFOI-DA/blob/main/Plot%20Results/AI)%202D%206-Axis%20age-compare%20roll-mean%20sig-1D-2D%20cor-shift%20decay-hist-cor%20same-scale%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300%20AG_DIFF%2025Y/AI)%202D%206-Axis%20age-compare%20roll-mean%20sig-1D-2D%20cor-shift%20decay-hist-cor%20same-scale%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300%20AG_DIFF%2025Y%20AG_50-54%20vs%2075-79.png width="1280" height="auto">
 <br>
+
 _________________________________________
 
 **Simulation of deaths for rare dAEFIs, and attempts to back-calculate the frequency  : AG_50-54 vs 75-79**
@@ -56,7 +57,8 @@ _________________________________________
 <br>
 
 If the baseline without the dAEFIs is known, the frequency of rare events (1 per 10,000) can be calculated. 
-<br>**However, I have struggled to find a reliable method to calculate the frequency of rare events, when only the curve including the dAEFIs is available (real-world data)!**
+<br>**However, I have struggled to find a reliable method to calculate the frequency of rare events, 
+<br>when only the curve including the dAEFIs is available (real-world data)!**
 _________________________________________
 
 ### Software Requirements:

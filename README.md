@@ -40,7 +40,7 @@ _________________________________________
 The py script ending with **same-scale** uses the same y-axis scale for both age groups. Use this version to compare similar age groups. The file ending with **different-scale** uses different y-axes with different scales for each age group.
 _________________________________________
 
-**Decay Calcualtion and rolling correlation significance and shift: AG_70-74 vs 75-79**
+**Decay Calcualtion and rolling correlation significance and shift: AG_50-54 vs 75-79**
 <br>Decay Time - calculates the number of days per day retroactively after a certain percentage has died
 <br>
 

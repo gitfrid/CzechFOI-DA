@@ -22,11 +22,12 @@ def main():
 
     # Create an instance of PlotConfig
     plot_config = PlotConfig(
-        title_text="Rolling correl significance and pahse shift -  diff between AG 0Y", # Title of plot
-        plot_name_append_text="Avg - NUM_VD 1D 2D vs NUM_D 1D 2D",       # apend text - to plotfile name and directory, to save in uniqe file location
+        title_text="1st 2nd derivate - decay time history - roll correl significance - pahse shift correl", # Title of plot
+        plot_name_append_text="AG_DIFF 25Y",       # apend text - to plotfile name and directory, to save in uniqe file location
         window_size_correl=300,         # window size for rolling pearson correlation
+        max_phase_shift=300,            # max phase shift for phase shift correlation
         window_size_mov_average=30,     # window size for moving means
-        target_decay_time=70,
+        target_decay_time=70,           # paramter to adjust decay target_percentage to calculate the dacy time 
         normalize=True,                 # normalize dvd values
         normalize_cumulate_deaths=True, # normalize cumulated deaths bevore cummulation
         population_minus_death=True,    # deducts the deceased from the total population
@@ -36,11 +37,11 @@ def main():
         calc_derivate_mean = True       # smooth 1sd and 2nd derivate by moving mean before and after calc
     )
 
-    # If you're calculating pearson correlation significance on raw data without rolling mean, 
+    # If you're calculating pearson significance and shift correlation on raw data without rolling mean, 
     # you'll be dealing with the raw variability in the data,
     # this can lead to spurious results by the  noise in the data. 
     # In most time-series analyses, smoothing is recommended to help reduce this
-    
+           
     pairs = [
             ('Avg NUM_VDA','Avg NUM_DVDA'),
             ('Avg NUM_VDA','Avg NUM_D'),
@@ -57,27 +58,80 @@ def main():
             ('Avg 2D NUM_VDA','Avg Decay NUM_DVDA'),
             ('Avg 2D NUM_VDA','Avg Decay NUM_D'),            
             ('Avg 2D NUM_VDA','Avg Decay NUM_DVX'),
-            ('Avg 2D NUM_VDA','Avg Decay NUM_DUVX')
+            ('Avg 2D NUM_VDA','Avg Decay NUM_DUVX'),
+            ('Avg Decay NUM_D', 'Avg Decay NUM_DVX'),
+            ('Avg Decay NUM_D', 'Avg Decay NUM_DUVX'),
+            ('Avg Decay NUM_D', 'Avg Decay NUM_DVDA'),
+            ('Avg Decay NUM_DVX', 'Avg Decay NUM_DUVX'),
+            ('Avg Decay NUM_DVX', 'Avg Decay NUM_DVDA'),
+            ('Avg Decay NUM_DUVX', 'Avg Decay NUM_DVDA'),
+            ('Avg NUM_VDA','Avg Decay NUM_DVDA'),
+            ('Avg NUM_VDA','Avg Decay NUM_D'),
+            ('Avg NUM_VDA','Avg Decay NUM_DVX'),
+            ('Avg NUM_VDA','Avg Decay NUM_DUVX'),
+            ('Avg NUM_D', 'Avg Decay NUM_D'),
+            ('Avg NUM_DVX', 'Avg Decay NUM_DVX'),
+            ('Avg NUM_DUVX', 'Avg Decay NUM_DUVX'),
+            ('Avg NUM_DVDA', 'Avg Decay NUM_DVDA'),        
     ]
     
-    # Comment in - if you want to show pairs text in the plot annotation 
+    
+    # Comment this line in - if you want to show pairs text in the plot annotation: 
     # plot_config.update_pairs(pairs)
     
+
+    # age_band_pairs is used to compare traces between age bands and calculate 
+    # significance correlation and correlation shift. 
+    # A new list, updated_age_band_pairs, is generated for each tuple in 
+    # the age_band_compare list below.
+    #
+    # The output will be: 
+    # updated_age_band_pairs = [
+    #    ('Avg NUM_VDA 55', 'Avg NUM_VDA 75'),
+    #    ('Avg NUM_D 55', 'Avg NUM_D 75'),
+    #    ...
+    # ]
+    age_band_pairs = [
+        ('Avg NUM_VDA', 'Avg NUM_VDA'),
+        ('Avg NUM_D', 'Avg NUM_D'),
+        ('Avg NUM_DVX', 'Avg NUM_DVX'),
+        ('Avg NUM_DUVX', 'Avg NUM_DUVX'),
+        ('Avg NUM_DVDA', 'Avg NUM_DVDA'),         
+        ('Avg 1D NUM_D', 'Avg 1D NUM_D'),
+        ('Avg 1D NUM_DVX', 'Avg 1D NUM_DVX'),
+        ('Avg 1D NUM_DUVX', 'Avg 1D NUM_DUVX'),
+        ('Avg 1D NUM_DVDA', 'Avg 1D NUM_DVDA'), 
+        ('Avg 2D NUM_D', 'Avg 2D NUM_D'),
+        ('Avg 2D NUM_DVX', 'Avg 2D NUM_DVX'),
+        ('Avg 2D NUM_DUVX', 'Avg 2D NUM_DUVX'),
+        ('Avg 2D NUM_DVDA', 'Avg 2D NUM_DVDA'), 
+        ('Avg Decay NUM_D', 'Avg Decay NUM_D'),
+        ('Avg Decay NUM_DVX', 'Avg Decay NUM_DVX'),
+        ('Avg Decay NUM_DUVX', 'Avg Decay NUM_DUVX'),
+        ('Avg Decay NUM_DVDA', 'Avg Decay NUM_DVDA'),        
+    ]
+
     # List of tuples with the age bands you want to compare
     age_band_compare = [
-        ('0-4', '5-9'),
-        ('10-14', '15-19'),
-        ('20-24', '25-29'),
-        ('30-34', '35-39'),
-        ('40-44', '45-49'),
-        ('50-54', '55-59'),
-        ('60-64', '65-69'),
-        ('70-74', '75-79'),
-        ('80-84', '85-89'),
-        ('90-94', '95-99'),
-        ('100-104', '105-109'),
-        ('105-109', 'gr109')
-    ]
+            ('0-4', '25-29'),
+            ('5-9', '30-34'),
+            ('10-14', '35-39'),
+            ('15-19', '40-44'),
+            ('20-24', '45-49'),
+            ('25-29', '50-54'),
+            ('30-34', '55-59'),
+            ('35-39', '60-64'),
+            ('40-44', '65-69'),
+            ('45-49', '70-74'),
+            ('50-54', '75-79'),
+            ('55-59', '80-84'),
+            ('60-64', '85-89'),
+            ('65-69', '90-94'),
+            ('70-74', '95-99'),
+            ('75-79', '100-104'),
+            ('80-84', '105-109'),
+            ('85-89', 'gr109'),
+        ]
     
     # CSV file pairs with age_band with death and population/doses data  
     csv_files_dvd = [
@@ -153,15 +207,18 @@ def main():
     # Generate shades for all color pairs
     color_shades = generate_color_shades(color_palette, n_pairs=11)
     color_shades_r = generate_color_shades(color_palette_r, n_pairs=11)
-
-                                
+                              
     # Loop through each pair of age bands in the list
     pair_nr = 0    
     for age_band_pair in age_band_compare:    
         # Create an instance of TraceManager
         trace_manager = TraceManager()
-         # Get the shades for the current index and age band pair
-       
+        # Generate updated pairs by calling the function with a single tuple
+        updated_age_band_pairs = generate_age_band_pairs(age_band_pair, age_band_pairs)
+        # Print the updated pairs
+        for pair in updated_age_band_pairs: print(pair)
+
+        # Get the shades for the current index and age band pair
         for idx, age_band in enumerate(age_band_pair):
 
             # Add traces for each dataframe (CSV-file)
@@ -408,18 +465,38 @@ def main():
                 percentage_dict[age_band] = target_percentage[0] * 100  # Save the target percentage for legend
             
                 # Loop through each day to calculate the decay time        
+                # Initialize decay_times with zeros for each day
+                decay_times = [0] * len(df)
+
+                # Loop through each day to calculate the decay time        
                 for day in range(len(df)):
                     decay_time = None
-                    if df[age_band].iloc[day] > 0: # Only proceed if population is greater than 0
-                        for future_day in range(day, len(df)):
-                            mean_population = df[age_band].iloc[day:future_day+1].mean()
-                            deaths  = deaths_df[age_band].iloc[day:future_day+1].sum()
+                    # If there are no deaths for this day, skip calculating decay time for this day
+                    if deaths_df[age_band].iloc[day] == 0:
+                        decay_times[day] = 0  # Just set the decay time to 0 for zero-death days
+                        continue  # Skip to the next day
+                    
+                    if df[age_band].iloc[day] > 0:  # Only proceed if population is greater than 0
+                        # Loop through past days (up to the current day) to calculate decay time
+                        for past_day in range(day, -1, -1):  # Going backwards from the current day
+                            mean_population = df[age_band].iloc[past_day:day+1].mean()  # Mean population up to the current day
+                            deaths = deaths_df[age_band].iloc[past_day:day+1].sum()  # Total deaths up to the current day
+
+                            # Check if the ratio of deaths to population exceeds the target percentage
                             if mean_population > 0 and (deaths / mean_population) >= target_percentage[0]:
-                                    decay_time = future_day - day  # Calculate decay time
-                                    break                           
-                    decay_times.append(decay_time if decay_time is not None else 0)       
-                decay_times_df[age_band] = decay_times
-                
+                                decay_time = day - past_day  # Decay time is the difference in days
+                                break  # Once decay time is found, exit the loop
+                    # If decay time is calculated, store it
+                    if decay_time is not None:
+                        decay_times[day] = decay_time
+                    else:
+                        decay_times[day] = 0  # If no decay time, store 0        
+
+                    # Store decay time for the current day
+                    decay_times[day] = decay_time if decay_time is not None else 0  # If no decay time, store 0
+
+                # Add decay times to the dataframe for plotting
+                decay_times_df[age_band] = decay_times               
 
                 # Create a separate DataFrame for rolling averages
                 rolling_avg_df = pd.DataFrame({'DAY': df['DAY']})
@@ -449,125 +526,21 @@ def main():
             # Fill empty legend columns to match the number of legend columns
             add_dummy_traces(trace_manager, trace_manager.get_fig().data, plot_config.custom_legend_column)
 
-          
-            # Calculate and plot the additionl rolling correlation and significance traces (curves) 
-            y_series = {}
-            for trace in trace_manager.figData.data:  # Loop through all traces
-                if trace.y is not None and len(trace.y) > 0:
-                    y_data = np.array(trace.y).flatten()
-                    y_series[trace.name] = xr.DataArray(y_data, dims='time', coords={'time': np.arange(len(y_data))})
-                else:
-                    print(f"Warning: {trace.name} has no data or invalid data: {len(trace.y)} ")
-
-            window_size = plot_config.window_size_correl
-            
-            # Calculate and plot rolling correlation for each pair
-            # Attention when changing the trace names (legend text) they must match the names from the pair list! 
-            for n, (name1, name2) in enumerate(pairs):
-
-                try:
-                    # search for traces / legends with this name
-                    name1 = f"{name1} {age_band_extension}"
-                    name2 = f"{name2} {age_band_extension}"
-                    # Check if both traces with the percentage extension exist in y_series
-                    df1 = y_series[name1]
-                    df2 = y_series[name2]
-
-                except KeyError as e:
-                    # Catch KeyError when the trace names are not found
-                    # print(f"KeyError: {e} not found in moving_averages, trying to adjust trace name matching...")
-                    
-                    # Find traces with matching prefix names in y_series
-                    matching_name1 = [key for key in y_series.keys() if key.startswith(name1)]
-                    matching_name2 = [key for key in y_series.keys() if key.startswith(name2)]
-                    
-                    # If matching traces are found, use the first one (you can improve this logic if necessary)
-                    if matching_name1 and matching_name2:
-                        df1 = y_series[matching_name1[0]]  # Take the first match
-                        df2 = y_series[matching_name2[0]]  # Take the first match
-                    else:
-                        print(f"Could not find matching traces for {name1} and {name2}")
-                        continue  # Skip this pair if no match found
-
-                # First, find the first non-zero index for both series in their raw (unfiltered) form
-                start_idx1_raw = first_nonzero_index(df1)
-                start_idx2_raw = first_nonzero_index(df2)
-                start_idx = max(start_idx1_raw, start_idx2_raw)
-
-                # Filter and align the data, excluding NaNs and zeros
-                filtered_df1, filtered_df2 = filter_and_align(df1, df2)
-
-                # Ensure filtered data exists
-                if len(filtered_df1) == 0 or len(filtered_df2) == 0:
-                    print(f"Filtered data for {name1} and {name2} is empty. Skipping this pair.")
-                    continue
-
-                # Calculate rolling correlation and significance
-                rolling_corr, p_values = rolling_significance_test(filtered_df1, filtered_df2, window_size)
-                
-                # Fill the leading invalid values with NaN to synchronize the rolling correlation with the data series! 
-                # Ensuring the correlation's start index on the x-axis matches the data series.
-                rolling_corr[:0] = np.nan  
-
-                # Plot rolling correlation and significance
-                time_indices = np.arange(0, len(filtered_df1))
-
-                trace_manager.add_trace(
-                    name=f'Rolling Corr {name1}<br>{name2}',
-                    x=time_indices,
-                    y=rolling_corr[0:],
-                    line=dict(dash='solid', width=1.5, color=colors[n % len(colors)]),
-                    secondary=True,
-                    axis_assignment='y7'
-                )
-
-                trace_manager.add_trace(
-                    name=f'Significant Corr {name1}<br>{name2} (p<0.05)',
-                    x=time_indices,
-                    y=(p_values[0:] < 0.05).astype(int),
-                    line=dict(dash='dash', width=1, color=colors[n % len(colors)]),
-                    secondary=True,
-                    axis_assignment='y7'
-                )
-
-                trace_manager.add_trace(
-                    name=f'P-Values {name1}<br>{name2}',
-                    x=time_indices,
-                    y=p_values[0:],  
-                    mode='lines+markers',
-                    marker=dict(size=3, color='gray'),
-                    line=dict(dash='dot', width=1, color='gray'),
-                    text=p_values[0:],
-                    hoverinfo='text',
-                    secondary=True,
-                    axis_assignment='y7'
-                )
-
-                # Calculate and plot phase shift correlation
-                max_phase_shift = 300  # Adjust based on your preference
-                phase_corr = phase_shift_correlation(filtered_df1, filtered_df2, max_phase_shift)
-
-                trace_manager.add_trace(
-                    name=f'Phase Shift Corr {name1}<br>{name2}',
-                    x=np.arange(-max_phase_shift, max_phase_shift + 1),
-                    y=phase_corr,
-                    line=dict(dash='solid', width=2, color=colors[(n+1) % len(colors)]),  # Different color
-                    secondary=True,
-                    axis_assignment='y7'
-                )
-
+            # Call the function to calculate and plot the rolling correlation to compare traces of a single age_band
+            time_indices_list, start_idx_list = plot_rolling_correlation_and_phase_shift_for_traces(trace_manager, pairs, age_band_extension, plot_config, colors)        
+     
             # Adding the red horizontal line at p = 0.05
             trace_manager.add_trace(
                 name=f'p = 0.05 significance level {age_band_extension}',
-                x=time_indices,
-                y=[0.05] * len(time_indices),  # Constant line at p = 0.05
+                x=time_indices_list[-1] ,
+                y=[0.05] * len(time_indices_list[-1]),  # Constant line at p = 0.05
                 line=dict(color='red', width=1, dash='dash'),
                 secondary=True,
                 axis_assignment='y7'
             )   
 
             # Set the plot title
-            plot_config.update_title(f'COR_START_DAY: {start_idx} AGE: {age_band_compare[pair_nr][0]} vs {age_band_compare[pair_nr][1]}')
+            plot_config.update_title(f'COR_START_DAY: {start_idx_list[-1]} AGE: {age_band_compare[pair_nr][0]} vs {age_band_compare[pair_nr][1]}')
 
             # Assign the plot traces-curves to the y-axis
             plot_layout(trace_manager.get_fig(), px.colors.qualitative.Dark24, plot_config)
@@ -575,6 +548,14 @@ def main():
             # Fill empty legend columns to match the number of legend columns
             add_dummy_traces(trace_manager, trace_manager.get_fig().data, plot_config.custom_legend_column)
 
+            # Call the function to calculate and plot the rolling correlation to compare traces between the two age_bands
+            if idx == 1:
+                plot_rolling_correlation_and_phase_shift_for_traces(trace_manager, updated_age_band_pairs,'', plot_config, colors)        
+
+            # Assign the plot traces-curves to the y-axis
+            plot_layout(trace_manager.get_fig(), px.colors.qualitative.Dark24, plot_config)
+
+     
         # Save the plot to an HTML file with a custom legend
         # If you want to automatically save the plots in a different directory to prevent them from being overwritten, 
         # you can add the dependent variables here!
@@ -590,6 +571,151 @@ def main():
         # Saves the traces to a .csv file
         if plot_config.savetraces_to_csv:
             save_traces_to_csv(trace_manager, file_name_without_extension)
+ 
+def generate_age_band_pairs(age_band_pair, age_band_pairs):
+    # Create an empty list to store the updated pairs
+    updated_age_band_pairs = []
+    
+    # Extract the lower bounds of the single age band pair
+    age1_lower = age_band_pair[0].split('-')[0]  # Get the lower bound of the first age band
+    age2_lower = age_band_pair[1].split('-')[0]  # Get the lower bound of the second age band
+    
+    # Loop through the age_band_pairs and add the age information
+    for pair in age_band_pairs:
+        # For each variable, add the corresponding age bounds
+        updated_pair = (f'{pair[0]} {age1_lower}', f'{pair[1]} {age2_lower}')
+        updated_age_band_pairs.append(updated_pair)
+
+    # Return the updated pairs
+    return updated_age_band_pairs
+
+
+# Calculate and plot rolling correlation, significance, and phase shift for each pair of traces.
+def plot_rolling_correlation_and_phase_shift_for_traces(trace_manager, pairs, age_band_extension, plot_config, colors):
+    # Returns: time_indices_list (list): List of time indices for each pair.
+    # start_idx_list (list): List of the starting indices for each pair.
+
+    # Create y_series from the trace data
+    y_series = {}
+    z = -1
+    for trace in trace_manager.figData.data:  # Loop through all traces in trace_manager
+        z += 1 
+        if trace.y is not None and len(trace.y) > 0:
+            y_data = np.array(trace.y).flatten()
+            y_series[trace.name] = xr.DataArray(y_data, dims='time', coords={'time': np.arange(len(y_data))})
+            print(f"Trace {z}:{trace.name}:")
+        else:
+            print(f"Warning {z}:{trace.name}: has no data or invalid data: {len(trace.y)}")
+
+    # Rolling window size from plot_config
+    window_size = plot_config.window_size_correl
+    
+    # Lists to store time indices and start indices for each pair
+    time_indices_list = []
+    start_idx_list = []
+
+    # Loop through the pairs of trace names
+    for n, (name1, name2) in enumerate(pairs):
+        try:
+            # Construct the trace names including the age band extension
+            if age_band_extension == '':
+                name1 = f"{name1}"
+                name2 = f"{name2}"
+            else :
+                name1 = f"{name1} {age_band_extension}"
+                name2 = f"{name2} {age_band_extension}"
+                
+            # Check if both traces exist in y_series
+            df1 = y_series[name1]
+            df2 = y_series[name2]
+
+        except KeyError:
+            # Handle the case where traces with the exact names are not found
+            matching_name1 = [key for key in y_series.keys() if key.startswith(name1)]
+            matching_name2 = [key for key in y_series.keys() if key.startswith(name2)]
+            
+            if matching_name1 and matching_name2:
+                df1 = y_series[matching_name1[0]]
+                df2 = y_series[matching_name2[0]]
+            else:
+                print(f"Could not find matching traces for :{name1}: and :{name2}: - matchingname1 :{matching_name1}: and matchingname2 :{matching_name2}:")
+                continue  # Skip this pair if no match found
+
+        # Find the first non-zero index for both series in their raw form
+        start_idx1_raw = first_nonzero_index(df1)
+        start_idx2_raw = first_nonzero_index(df2)
+        start_idx = max(start_idx1_raw, start_idx2_raw)
+
+        # Filter and align the data, excluding NaNs and zeros
+        filtered_df1, filtered_df2 = filter_and_align(df1, df2)
+
+        if len(filtered_df1) == 0 or len(filtered_df2) == 0:
+            print(f"Filtered data for {name1} and {name2} is empty. Skipping this pair.")
+            continue
+
+        # Calculate rolling correlation and significance
+        rolling_corr, p_values = rolling_significance_test(filtered_df1, filtered_df2, window_size)
+
+        # Synchronize the rolling correlation with the data series
+        rolling_corr[:0] = np.nan  
+
+        # Time indices for plotting
+        time_indices = np.arange(0, len(filtered_df1))
+
+        # Append the time indices and start index to the lists
+        time_indices_list.append(time_indices)
+        start_idx_list.append(start_idx)
+
+        # Plot rolling correlation
+        trace_manager.add_trace(
+            name=f'Rolling Corr<br>{name1}<br>{name2}',
+            x=time_indices,
+            y=rolling_corr[0:],
+            line=dict(dash='solid', width=1.5, color=colors[n % len(colors)]),
+            secondary=True,
+            axis_assignment='y7'
+        )
+
+        # Plot significant correlation (p < 0.05)
+        trace_manager.add_trace(
+            name=f'Sig Corr<br>{name1}<br>{name2} (p<0.05)',
+            x=time_indices,
+            y=(p_values[0:] < 0.05).astype(int),
+            line=dict(dash='dash', width=1, color=colors[n % len(colors)]),
+            secondary=True,
+            axis_assignment='y7'
+        )
+
+        # Plot p-values
+        trace_manager.add_trace(
+            name=f'P-Values<br>{name1}<br>{name2}',
+            x=time_indices,
+            y=p_values[0:],  
+            mode='lines+markers',
+            marker=dict(size=3, color='gray'),
+            line=dict(dash='dot', width=1, color='gray'),
+            text=p_values[0:],
+            hoverinfo='text',
+            secondary=True,
+            axis_assignment='y7'
+        )
+
+        # Calculate and plot phase shift correlation
+        max_phase_shift = plot_config.max_phase_shift
+        phase_corr = phase_shift_correlation(filtered_df2, filtered_df1, max_phase_shift)
+
+        trace_manager.add_trace(
+            name=f'Ph Shift Corr<br>{name1}<br>{name2}',
+            x=np.arange(-max_phase_shift, max_phase_shift + 1),
+            y=phase_corr,
+            line=dict(dash='solid', width=2, color=colors[(n+1) % len(colors)]),  # Different color
+            secondary=True,
+            axis_assignment='y7'
+        )
+
+    # Return the lists containing time indices and start indices for each pair
+    return time_indices_list, start_idx_list
+
 
 def phase_shift_correlation(series1, series2, max_shift=50):
     # Calculate the correlation of two time series at different phase shifts.
@@ -904,7 +1030,7 @@ class TraceManager:
 
 # Class to handle the plot title, annotation, and axis labels depending on the settings
 class PlotConfig:
-    def __init__(self, title_text, plot_name_append_text, window_size_correl, window_size_mov_average,target_decay_time,
+    def __init__(self, title_text, plot_name_append_text, window_size_correl,max_phase_shift,window_size_mov_average,target_decay_time,
                  normalize=False, normalize_cumulate_deaths=False, 
                  population_minus_death=False, custom_legend_column=6, axis_y1_logrithmic=False, 
                  savetraces_to_csv=False, calc_derivate_mean=False, pairs=None):
@@ -913,6 +1039,7 @@ class PlotConfig:
         self.title_text = title_text
         self.plot_name_append_text = plot_name_append_text
         self.window_size_correl = window_size_correl
+        self.max_phase_shift = max_phase_shift
         self.window_size_mov_average = window_size_mov_average
         self.target_decay_time = target_decay_time
         self.normalize = normalize
@@ -932,8 +1059,9 @@ class PlotConfig:
 
     def __str__(self):
         return (f"PlotConfig(title_text='{self.title_text}', "
-                f"window_size_correl={self.plot_name_append_text}, "
+                f"plot_name_append_text={self.plot_name_append_text}, "
                 f"window_size_correl={self.window_size_correl}, "
+                f"max_phase_shift={self.max_phase_shift}, "
                 f"window_size_mov_average={self.window_size_mov_average}, "
                 f"target_decay_time={self.target_decay_time}, "                
                 f"normalize={self.normalize}, "

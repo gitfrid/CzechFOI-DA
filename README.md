@@ -40,6 +40,14 @@ _________________________________________
 The py script ending with **same-scale** uses the same y-axis scale for both age groups. Use this version to compare similar age groups. The file ending with **different-scale** uses different y-axes with different scales for each age group.
 _________________________________________
 
+**Decay Calcualtion and rolling correlation significance and shift: AG_70-74 vs 75-79**
+<br>Decay Time - calculates the number of days per day retroactively after a certain percentage has died
+<br>
+
+<img src=https://github.com/gitfrid/CzechFOI-DA/blob/main/Plot%20Results/AI)%202D%206-Axis%20age-compare%20roll-mean%20sig-1D-2D%20cor-shift%20decay-hist-cor%20same-scale%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300%20AG_DIFF%2025Y/AI)%202D%206-Axis%20age-compare%20roll-mean%20sig-1D-2D%20cor-shift%20decay-hist-cor%20same-scale%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300%20AG_DIFF%2025Y%20AG_50-54%20vs%2075-79.png width="1280" height="auto">
+<br>
+_________________________________________
+
 ### Software Requirements:
 - [Python 3.12.5](https://www.python.org/downloads/) to run the scripts.
 - [Visual Studio Code 1.92.2](https://code.visualstudio.com/download) to edit and run scripts.

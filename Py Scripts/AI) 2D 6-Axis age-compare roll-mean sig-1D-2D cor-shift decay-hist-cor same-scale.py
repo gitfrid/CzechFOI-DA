@@ -28,8 +28,8 @@ def main():
         max_phase_shift=300,            # max phase shift for phase shift correlation
         window_size_mov_average=30,     # window size for moving means
         target_decay_time=70,           # paramter to adjust decay target_percentage to calculate the dacy time 
-        normalize=True,                 # normalize dvd values
-        normalize_cumulate_deaths=True, # normalize cumulated deaths bevore cummulation
+        normalize=False,                 # normalize dvd values
+        normalize_cumulate_deaths=False, # normalize cumulated deaths bevore cummulation
         population_minus_death=True,    # deducts the deceased from the total population
         custom_legend_column = 10,      # A change could require adjustments to the code. 
         axis_y1_logrithmic=True,        # show logarithmic y1 axis

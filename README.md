@@ -53,6 +53,8 @@ _________________________________________
 <br>In the simulation, the baseline without the dAEFIs is known , **in reality it is unknown**.
 <br>
 
+Here, I didn't use the czech FOI mortality data. Instead, I simulated the death curves using modulated sine waves. 
+
 <img src=https://github.com/gitfrid/CzechFOI-DA/blob/main/Plot%20Results/AI)%20backcalc%20sin%20dAEFI%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300%20AG_DIFF%2025Y/AI)%20backcalc%20sin%20dAEFI%201D2D-MEAN%20POP-D%20N-CUM-D%20N%20AVG_30%20CORR_300%20AG_DIFF%2025Y%20AG_50-54%20vs%2075-79.png width="1280" height="auto">
 <br>
 
